@@ -26,7 +26,7 @@ rnc_shapes <-
 
 gc()
 
-mujeres <- read_sf("data/servicios_de_atencion_a_violencia_contra_las_mujeres/servicios_de_atencion_a_violencia_contra_las_mujeres.shp") %>% st_transform(crs = 4269) 
+mujeres <- read_sf("data/servicios_de_atencion_a_violencia_contra_las_mujeres/servicios_de_atencion_a_violencia_contra_las_mujeres.shp") %>% st_transform(crs = 4269) # de https://datos.cdmx.gob.mx/dataset/servicios-atencion-violencia-mujeres-durante-contingencia-covid19
 
 mujeres <- 
   st_filter(mujeres, 
