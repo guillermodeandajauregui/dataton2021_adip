@@ -38,6 +38,7 @@ ageb_shp <- left_join(ageb_shp, imu_data, by=c("CVEGEO"="CVE_AGEB"))
 ageb_shp <- left_join(ageb_shp, pop_ageb)
 ageb_shp <- left_join(ageb_shp, pop_ageb.fem)
 ageb_shp <- left_join(ageb_shp, select(delitos_100k, -pop), by=c("CVEGEO"="cvegeo"))
+ageb_shp <- left_join(ageb_shp, dist_apoyos)
 
 #delitos_map lo dejaremos fuera porque es una serie de tiempo ---- 
 
