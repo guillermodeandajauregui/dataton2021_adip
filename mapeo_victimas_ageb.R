@@ -57,8 +57,8 @@ victimas_pre_covid_by_ageb <- victimas_pre_covid %>%
   group_by(cvegeo) %>%
   tally(sort = T, name = "delitos")
 
-victimas_pos_covid_by_ageb %>% vroom::vroom_write("intermediates/delitos_pos-covid_abeg.tsv")
-victimas_pre_covid_by_ageb %>% vroom::vroom_write("intermediates/delitos_pre-covid_abeg.tsv")
+victimas_pos_covid_by_ageb %>% vroom::vroom_write("intermediates/delitos_pos-covid_ageb.tsv")
+victimas_pre_covid_by_ageb %>% vroom::vroom_write("intermediates/delitos_pre-covid_ageb.tsv")
 
 
 ### Incidencia por 100mil hab
