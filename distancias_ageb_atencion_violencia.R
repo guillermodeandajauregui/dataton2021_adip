@@ -110,13 +110,17 @@ apply(cost_matrix, 1, function(x) x[which(x == min(x))[1]])
 
 ageb_shp <- 
   ageb_shp %>% 
-  mutate(distancia_apoyo_mujeres = apply(cost_matrix, 1, function(x) x[which(x == min(x))[1]]))
+  mutate(distancia_apoyo_mujeres = apply(cost_matrix, 1, function(x) x[which(x == min(x))[1]])) %>% 
+  mutate(distancia_apoyo_mujeres = distancia_apoyo_mujeres + 1)
 
 ggplot() +
-  geom_sf(data =ageb_shp,  mapping = aes(fill = distancia_apoyo_mujeres+1), lwd=0.1) + 
+  geom_sf(data =ageb_shp,  mapping = aes(fill = distancia_apoyo_mujeres), lwd=0.1) + 
+  geom_sf(data = st_as_sf(activate(rnc_shapes, "edges")), 
+          #mapping = aes(color = TIPO_VIAL)
+  ) + 
+  geom_sf(data = mujeres, color = "red") + 
   theme_minimal() + 
-  scale_fill_viridis_c(option = "A", trans="log10") + 
-  geom_sf(data = mujeres, color = "red")
+  scale_fill_viridis_c(option = "A", trans="log10") # + 
 
 
 ageb_shp %>% 

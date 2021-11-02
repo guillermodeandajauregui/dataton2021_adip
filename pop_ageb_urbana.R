@@ -15,6 +15,9 @@ unlink(td)
 unlink(tf)
 rm(td, tf)
 
+
+x %>% colnames()
+
 pop.ageb <- 
   x %>% 
   #filter(!grepl("Total", NOM_LOC)) %>%
@@ -30,3 +33,18 @@ ageb_shp   <- sf::st_read(dsn = "data/marco_geoestadistico2020/conjunto_de_datos
 ageb_shp$CVEGEO %>% head() %>% str_length()
 
 vroom::vroom_write(x = pop.ageb, file = "intermediates/pop_ageb_urbana.txt")
+
+pop.ageb.fem <- 
+  x %>% 
+  #filter(!grepl("Total", NOM_LOC)) %>%
+  filter(grepl("Total AGEB", NOM_LOC)) %>% 
+  mutate(CVEGEO=paste0(ENTIDAD,MUN,LOC, AGEB)) %>% 
+  mutate(POBFEM=as.numeric(POBFEM)) %>% 
+  select(CVEGEO, POBFEM) %>% 
+  #  select(1:15) %>% 
+  #  filter(is.na(POBFEM))
+    #drop_na()
+  group_by(CVEGEO) %>% 
+  summarise(popfem = sum(POBFEM))
+
+vroom::vroom_write(x = pop.ageb.fem, file = "intermediates/pop_ageb_urbana_fem.txt")
